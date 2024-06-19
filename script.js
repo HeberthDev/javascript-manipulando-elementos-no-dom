@@ -75,7 +75,7 @@ function alterarContexto(contexto) {
 const contagemRegressiva = () => {
     if (tempoDecorridoEmSegundos <= 1) {
         zerar();
-        musicaTempoEsgotado.play();
+        // musicaTempoEsgotado.play();
         alert('Tempo finalizado!');
         return;
     }
@@ -111,6 +111,7 @@ function toggleNomeBtnESom() {
         musicaPause.play();
     } else {
         startPauseBtn.innerHTML = `
+            <img class="app__card-primary-butto-icon" src="imagens/pause.png" alt="">
             <span>Pausar</span>
         `;
         musicaPlay.play();

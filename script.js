@@ -16,9 +16,11 @@ const musicaPlay = new Audio('./sons/play.wav');
 const musicaPause = new Audio('./sons/pause.mp3');
 const musicaTempoEsgotado = new Audio('./sons/beep.mp3');
 
-let tempoDecorridoEmSegundos = 5;
+let tempoDecorridoEmSegundos = 1500;
 const startPauseBtn = document.querySelector('#start-pause');
 let intervaloId = null;
+
+const tempoNaTela = document.getElementById("timer");
 
 musicaFocoInput.addEventListener('change', () => {
     if (musica.paused) {
@@ -73,7 +75,7 @@ function alterarContexto(contexto) {
 }
 
 const contagemRegressiva = () => {
-    if (tempoDecorridoEmSegundos <= 1) {
+    if (tempoDecorridoEmSegundos <= 0) {
         zerar();
         // musicaTempoEsgotado.play();
         alert('Tempo finalizado!');
@@ -81,7 +83,7 @@ const contagemRegressiva = () => {
     }
 
     tempoDecorridoEmSegundos -= 1;
-    console.log('Temporizador: ', tempoDecorridoEmSegundos);
+    mostrarTempo();
 }
 
 startPauseBtn.addEventListener('click', iniciarOuPausar);
@@ -117,3 +119,11 @@ function toggleNomeBtnESom() {
         musicaPlay.play();
     }
 }
+
+function mostrarTempo() {
+    const tempo = tempoDecorridoEmSegundos;
+    // tempoNaTela.innerHTML = tempo;
+    tempoNaTela.innerHTML = `${tempo}`;
+}
+
+mostrarTempo();

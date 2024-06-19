@@ -31,21 +31,26 @@ musicaFocoInput.addEventListener('change', () => {
 });
 
 focoBtn?.addEventListener('click', () => {
+    tempoDecorridoEmSegundos = 1500;
     alterarContexto('foco');
     focoBtn.classList.add('active');
 })
 
 curtoBtn?.addEventListener('click', () => {
+    tempoDecorridoEmSegundos = 300;
     alterarContexto('descanso-curto');
     curtoBtn.classList.add('active');
 })
 
 longoBtn?.addEventListener('click', () => {
+    tempoDecorridoEmSegundos = 900,
     alterarContexto('descanso-longo');
     longoBtn.classList.add('active');
 })
 
 function alterarContexto(contexto) {
+    mostrarTempo();
+
     botoes.forEach((botao) => {
         botao.classList.remove('active');
     });
@@ -121,9 +126,10 @@ function toggleNomeBtnESom() {
 }
 
 function mostrarTempo() {
-    const tempo = tempoDecorridoEmSegundos;
+    const tempo = new Date(tempoDecorridoEmSegundos * 1000);
+    const tempoFormatado = tempo.toLocaleTimeString('pt-Br', {minute: '2-digit', second: '2-digit'});
     // tempoNaTela.innerHTML = tempo;
-    tempoNaTela.innerHTML = `${tempo}`;
+    tempoNaTela.innerHTML = `${tempoFormatado}`;
 }
 
 mostrarTempo();
